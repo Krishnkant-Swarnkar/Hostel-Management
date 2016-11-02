@@ -1,0 +1,227 @@
+/* body */
+
+body{
+    background-color:#eeeeee;	
+}
+
+/* Header */
+
+#hd{
+	background-color:#dddddd !important;
+}
+
+header h4{
+	padding-top:4px;
+	font-family:"Times New Roman", Times, serif;
+	font-style:strong;
+	color:#3377cc;
+}
+
+
+
+#iitlogo {
+	width:90px;
+	height:90px;
+	
+}
+
+/* Nav */
+
+#nav{
+  font-family: 'Oswald', sans-serif;
+  font-weight: 300;
+  background-color: rgba(200, 200, 200, 0.90);
+  
+  font-size: 17px;
+  padding-top:15px;
+  
+}
+
+#nav .menu {
+  
+  list-style-type: none;
+  
+}
+
+#login{
+	float:right;
+}
+
+#brand{
+	color:white;
+	background-color:red;
+	padding-top:16px;
+	padding-bottom:14px;
+	border-left:1px;
+	border-right:1px;
+	border-top:1px;
+	border-bottom:1px;
+}
+
+.menu  > li{
+	
+	display: inline;
+  
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+#home{
+	
+	padding-top:35px;
+}
+
+
+
+.menu a {
+	text-align: center;
+    
+  color: #898989;
+  text-decoration:none;
+}
+
+.menu a:hover {
+	
+    
+  color: white;
+  
+}
+
+.active{
+	 color:green;
+}
+
+/* Dropdown */
+
+.dropdown-menu {
+  font-size: 16px;
+  margin-top: 5px;
+  min-width: 105px;
+  display:none;
+}
+
+.dropdown-menu li a {
+  color: #898989;
+  padding: 6px 20px;
+  font-weight: 300;
+  display:block;
+}
+
+.caret-up {
+    width: 0; 
+    height: 0; 
+    border-left: 4px solid rgba(0, 0, 0, 0);
+    border-right: 4px solid rgba(0, 0, 0, 0);
+    border-bottom: 4px solid;
+    
+    display: inline-block;
+    margin-left: 2px;
+    vertical-align: middle;
+}
+
+#user-menu{
+	width:120px !important;
+	font-size: 14px;
+  margin-top: 5px;
+}
+#user-menu li a {
+  color: #898989;
+  padding: 6px 2px;
+  font-weight: 250;
+}
+
+#user-dd{
+	
+	float:right;
+}
+  
+
+
+/*Fixed Nav*/
+
+.sticky {
+  position: fixed;
+  top:0;
+  z-index: 1;
+  width:100%;
+}
+
+/*Responsive Nav Bar*/
+
+ul.menu li.icon {display: none;}
+
+@media screen and (max-width:800px) {
+  ul.menu li:not(:first-child) {display: none;}
+  ul.menu li.icon {
+    float: right;
+    display: inline-block;
+  }
+  
+}
+
+@media screen and (max-width:800px) {
+  ul.menu.responsive {position: relative;}
+  ul.menu.responsive li.icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  ul.menu.responsive li{
+    float: none;
+    display: inline;
+  }
+  ul.menu.responsive li a {
+    display: block;
+    text-align: left;
+  }
+  
+}
+
+
+/*Modal*/
+
+.modal-header, .modal-header h4, .close {
+      background-color: #222;
+      color:white !important;
+      text-align: center;
+      font-size: 30px;
+  }
+  
+  .modal-body button{
+	  font-size:20px;
+  }
+  
+  .modal-footer {
+      background-color: #222;
+  }
+
+
+
+/*Footer*/
+footer {
+  bottom: 0;
+  width: 100%;
+  background-color: #dddddd;
+  font-size: 14px;
+  padding:20px 5px;
+  
+}
+
+footer ul a{
+	float:right;
+	color:red;
+	text-decoration:none;
+	padding-right:20px;
+	
+	
+}
+footer ul{
+  display: flex;
+  justify-content: flex-end;
+  
+}
+
+footer ul {
+  list-style: none;
+}
+

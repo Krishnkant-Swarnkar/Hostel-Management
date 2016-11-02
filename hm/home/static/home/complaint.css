@@ -1,0 +1,42 @@
+
+
+/* Card styles
+-------------------------------------------------- */
+.img-thumbnail.pull-center.aa{
+	margin:20px;
+	width:100px;
+	height:100px;
+}
+.img-thumbnail.pull-center.aa:hover{
+	margin:20px;
+	width:100px;
+	height:100px;
+	border-style: solid;
+	border-width: 1px 1px 1px 1px;
+	border-color:#00DDFF;
+}
+.img-thumbnail.pull-center.aa:active{
+	opacity:0.2;
+	margin:20px;
+	width:100px;
+	height:100px;
+	border-style: solid;
+	border-width: 0.5px 0.5px 0.5px 0.5px;
+	border-color:#00DDFF;
+}
+
+
+#pastcomp{
+	padding:20px;
+	padding-left:100px;
+	text-decoration:none;
+	font-size:18px;
+	font-style:strong;
+	color:green;
+	
+}
+  
+
+
+
+
