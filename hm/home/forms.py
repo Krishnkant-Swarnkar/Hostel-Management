@@ -9,5 +9,9 @@ class SignUp(ModelForm):
         model = Student
         fields = '__all__'
         widgets = {
-            'dob': SelectDateWidget( years = [ i for i in range(1990 , 2016)] , empty_label="Nothing"),
+            'name': forms.TextInput(attrs={'placeholder': 'Enter Name' , 'class': 'form-control'}),
+            'roll': forms.TextInput(attrs={'placeholder': 'Enter Roll no.', 'class': 'form-control'}),
+            'dob': SelectDateWidget( years = [ i for i in range(1990 , 2016)] , empty_label="Nothing",attrs={'class': 'form-control'}),
+            'department': forms.Select(attrs={'class': 'form-control'}),
+            'program': forms.Select(attrs={'class': 'form-control'}),
         }

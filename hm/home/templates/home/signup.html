@@ -10,7 +10,46 @@
 			<br>
             <form class="form-horizontal" action="{% url 'signedup' %}" method="POST" name="signup_form">
                 {% csrf_token %}
-                {{ SignUpForm }}
+
+                <div class="form-group">
+                    {{ SignUpForm.roll.errors }}
+                    <label class="control-label col-sm-2" for="{{ SignUpForm.roll.id_for_label }}">ROLL NUMBER</label>
+                    <div class="col-sm-2">
+                        {{ SignUpForm.roll }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ SignUpForm.name.errors }}
+                    <label class="control-label col-sm-2" for="{{ SignUpForm.name.id_for_label }}">NAME</label>
+                    <div class="col-sm-5">
+                        {{ SignUpForm.name }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ SignUpForm.dob.errors }}
+                    <label class="control-label col-sm-2" for="{{ SignUpForm.dob.id_for_label }}"><span class="pull-right">Date of Birth</span></label>
+                    <div class="form-inline col-sm-5">
+                        {{ SignUpForm.dob }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ SignUpForm.department.errors }}
+                    <label class="control-label col-sm-2" for="{{ SignUpForm.department.id_for_label }}">Department</label>
+                    <div class="col-sm-3">
+                        {{ SignUpForm.department }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ SignUpForm.program.errors }}
+                    <label class="control-label col-sm-2" for="{{ SignUpForm.program.id_for_label }}">Program</label>
+                    <div class="col-sm-2">
+                        {{ SignUpForm.program }}
+                    </div>
+                </div>
+
+
+
+
 
     
                 <div class="form-group">
