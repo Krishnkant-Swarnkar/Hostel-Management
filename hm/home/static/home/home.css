@@ -1,0 +1,24 @@
+/* Carousel */
+#carousel{
+	width:100%;
+	height:480px;
+}
+
+#carousel img{
+	width:100%;
+	height:500px;
+}
+
+section .col-sm-7{
+	margin:10px;
+	min-height:400px;
+	background-color:#4dffff;
+	box-shadow: 2px 4px 8px 2px rgba(0, 0, 0, 0.3), 3px 6px 20px 3px rgba(0, 0, 0, 0.25);
+}
+
+section .col-sm-3{
+	box-shadow: 2px 4px 8px 2px rgba(0, 0, 0, 0.3), 3px 6px 20px 3px rgba(0, 0, 0, 0.25);
+	margin:10px;
+	min-height:400px;
+	background-color:#80ffff;
+}

@@ -1,0 +1,38 @@
+{% extends 'home/base.html' %}
+{%  load staticfiles %}
+{% block head %}
+        <title> Hostels @ IIT BHU</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'home/hostel.css' %}">
+{% endblock %}
+{% block body %}
+		<section class="container-fluid" >
+		<div class="row">
+		<div class="col-sm-2" id="hlist"> 
+
+                    <ul>
+                    {% for hostel in hostel_list %}
+                        <li><a href="{% url 'allhostel'  hostel.id %}">{{ hostel.name }}</a></li>
+                    {% endfor %}
+                    </ul>
+
+
+			
+			</div>
+			<div id="map" class="col-sm-10">
+			 
+				<script>
+					function initMap() {
+						var mapDiv = document.getElementById('map');
+						var map = new google.maps.Map(mapDiv, {
+							center: {lat: 25.2632219, lng: 82.9910916},
+							zoom: 16
+						});
+					}
+				</script>
+				<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDCkXqJ_CX2rphpZtL7I7QpD6T9yeLU5-Y&callback=initMap"></script>
+			
+			</div>
+		</div>
+		</section>
+{% endblock %}
+	

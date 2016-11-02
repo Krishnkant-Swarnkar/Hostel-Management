@@ -1,0 +1,129 @@
+{%  load staticfiles %}
+
+<!DOCTYPE html>
+<!-- saved from url=(0057)file:///C:/Users/User/Desktop/HostelManagement/index.html -->
+<html lang="en">
+	
+	<head>
+		<link rel="icon" href="{% static 'home/images/IITBHU_Logo.png' %}" type="image/png">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="{% static 'home/jquery-1.11.3.min.js' %}"></script>
+        <link rel="stylesheet" type="text/css" href="{% static 'home/css/bootstrap.min.css' %}">
+        <script src="{% static 'home/js/bootstrap.min.js' %}"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="{% static 'home/main.css' %}">
+		<script src="{% static 'home/app.js' %}"></script>
+        {% block head %}
+        {% endblock %}
+	</head>
+	
+	<body>
+		
+		<!---header--->
+		<header class="container-fluid" id="hd">
+			<div class="row">
+				
+				<div  class ="col-sm-1" id="hd2">
+					
+				</div>
+				<div  class ="col-sm-1 " id="hd2">
+					<img src="{% static 'home/images/IITBHU_Logo2.png' %}" id="iitlogo">
+				</div>
+				<div  class ="col-sm-1" id="hd2">
+					
+				</div>
+				
+				<div class="col-sm-9" ,id="hd4">
+					<h4>INDIAN INSTITUTE OF TECHNOLOGY</h4>
+					<h4>(Banaras Hindu University) , Varanasi</h4>
+					
+				</div>
+				
+			</div>
+		</header>
+		<!---NavBar--->
+		<div class="header" id="nav">
+			<div class="container-fluid">	
+				<ul class="menu" id="myTopnav">	
+					<li id="brand">IIT BHU|Hostels</li>
+					<li ><a id="home" class="active" href="{% url 'home' %}"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+					<li class="dropdown" id="hostel-dd">
+						<a href="{% url 'hostel' %}" class="dropdown-toggle" id="hostel-toggle">Hostels <b class="caret" id="h-c"></b></a>
+
+                         <ul class="dropdown-menu" style="column-count:2 ; -moz-column-count: 2; " id="hostel-menu">
+                            {% for hostel in hostel_list %}
+                                <li><a href="{% url 'allhostel'  hostel.id %}">{{ hostel.name }}</a></li>
+                            {% endfor %}
+                         </ul>
+
+
+					</li>
+					<li ><a href="#">Discussion</a></li>
+					<li ><a href="{% url 'complaint' %}">Complaints</a></li>
+					<li ><a href="#">Mess</a></li>
+					<li id="login" ><a href="#myBtn" class="show" id="myBtn"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+					
+					<li class="icon">
+						<a href="#respon" id="respon">&#9776;</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	
+		<!-- Modal -->
+		<div class="modal fade" id="myModal" role="dialog">
+			<div class="modal-dialog">
+    
+			<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header" style="padding:35px 50px;">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4><span class="glyphicon glyphicon-lock"></span> Login</h4>
+					</div>
+					<div class="modal-body" style="padding:40px 50px;">
+					<form role="form" action="./userhome.html" method="post">
+						<div class="form-group">
+							<label for="usrname"><span class="glyphicon glyphicon-user"></span> Username</label>
+							<input type="text" class="form-control" id="usrname" placeholder="Enter email">
+						</div>
+						<div class="form-group">
+							<label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
+							<input type="password" class="form-control" id="password" placeholder="Enter password">
+						</div>
+						<div class="checkbox">
+							<label><input type="checkbox" value="" checked>Remember me</label>
+						</div>
+							<button type="submit" value="Send" class="btn btn-success btn-block" id="loginBtn" ><span class="glyphicon glyphicon-off" ></span> Login</button>
+					</form>
+					</div>
+					<div class="modal-footer">
+						
+						<p><a href="#">Forgot Password?</a></p>
+                        <p><a href="{% url 'signup' %}">First time User?Sign up here </a></p>
+
+					</div>
+				</div>
+      
+			</div>
+		</div>
+	
+		{% block body %}
+        {% endblock %}
+	
+		<!---Footer--->
+		<footer class="container-fluid">
+			
+				<p class="col-sm-8 text-left">&copy; 2016 Indian Institute of Technology (BHU), Varanasi</p>
+				
+				<ul>
+					<li><a href="http://www.iitbhu.ac.in"><span class="glyphicon glyphicon-globe"></span> IIT BHU | Home<a>
+				</ul>
+			
+		</footer>
+	
+	
+		
+	</body>
+</html>

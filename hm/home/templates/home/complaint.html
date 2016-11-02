@@ -1,0 +1,126 @@
+{% extends 'home/base.html' %}
+{%  load staticfiles %}
+{% block head %}
+        <title>Complaints @ Hostels IIT BHU</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'home/complaint.css' %}">
+{% endblock %}
+{% block body %}
+		
+		<h3 class="text-center he" style="color:#cc00bb; text-shadow: 2px 2px 5px red;">COMPLAINTS / SUGGESTIONS</h3>
+		
+		<a href="./viewcomp.html" id="pastcomp">Click Here To View your Past Complaints</a>
+		
+		<div class="container" style="background-color:white;border-style: solid;border-width: 2px 2px 2px 2px;border-color:black;">
+			
+			<h4>Your Complaint is regarding :</h4>
+			<div class="row">
+			
+				<div class="col-sm-3">
+					<a href="#" class="compBtn" id="Water Supply"><img class="img-thumbnail pull-center aa" src="{% static 'home/images/card01.png' %}"></a>
+				</div>
+				<div class="col-sm-3">
+					<a href="#" class="compBtn" id="Electricity"><img class="img-thumbnail pull-center aa" src="{% static 'home/images/card02.png' %}"></a>
+				</div>
+			
+				<div class="col-sm-3">
+					<a href="#" class="compBtn" id="Lan Port"><img class="img-thumbnail pull-center aa" src="{% static 'home/images/card03.png' %}"></a>
+				</div>
+				<div class="col-sm-3">
+					<a href="#" class="compBtn" id="Furniture"><img class="img-thumbnail pull-center aa" src="{% static 'home/images/card04.png' %}"></a>
+				</div>
+			
+			</div>
+			<div class="row">
+			
+				<div class="col-sm-3">
+					<a href="#" class="compBtn" id="Canteen"><img class="img-thumbnail pull-center aa" src="{% static 'home/images/card05.png' %}"></a>
+				</div>
+				<div class="col-sm-3">
+					<a href="#" class="compBtn" id="Registration"><img class="img-thumbnail pull-center aa" src="{% static 'home/images/card06.png' %}"></a>
+				</div>
+			
+			
+				<div class="col-sm-3">
+					<a href="#" class="compBtn" id="Security"><img class="img-thumbnail pull-center aa" src="{% static 'home/images/card07.png' %}"></a>
+				</div>
+				<div class="col-sm-3">
+					<a href="#" class="compBtn" id="Parking"><img class="img-thumbnail pull-center aa" src="{% static 'home/images/card08.png' %}"></a>
+				</div>
+			
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+					<a href="#" class="compBtn" id="Mess"><img class="img-thumbnail pull-center aa" src="{% static 'home/images/card09.png' %}"></a>
+				</div>
+				<div class="col-sm-3">
+					<a href="#" class="compBtn" id="Disturbance"><img class="img-thumbnail pull-center aa" src="{% static 'home/images/card10.png' %}"></a>
+				</div>
+				<div class="col-sm-3">
+					<a href="#" class="compBtn" id="Other Infra-related"><img class="img-thumbnail pull-center aa" src="{% static 'home/images/card11.png' %}"></a>
+				</div>
+				<div class="col-sm-3">
+					<a href="#" class="compBtn" id="Cleanliness"><img class="img-thumbnail pull-center aa" src="{% static 'home/images/card12.png' %}"></a>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+				</div>
+				<div class="col-sm-3">
+					<a href="#" class="compBtn" id="Suggestion"><img class="img-thumbnail pull-center aa" src="{% static 'home/images/card13.png' %}"></a>
+				</div>
+				<div class="col-sm-6">
+					<a href="#" class="compBtn" id="Others"><img class="img-thumbnail pull-center aa" src="{% static 'home/images/card14.png' %}"></a>
+				</div>
+				<div class="col-sm-3">
+				</div>
+			</div>
+		</div>
+	
+
+	
+		<!-- Modal -->
+		<div class="modal fade" id="complModal" role="dialog">
+			<div class="modal-dialog">
+    
+			<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header" style="padding:35px 50px;">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4><span class="glyphicon glyphicon-lock"></span> COMPLAINTS</h4>
+					</div>
+					<div class="modal-body" style="padding:40px 50px;">
+					  <form class="form-horizontal">
+					    <div class="form-group">
+							<label class="control-label col-sm-2" for="name">Name:</label>
+							<div class="col-sm-10">
+								<p class="form-control-static" id="name">Abc</p>
+							</div>
+						</div>
+					    <div class="form-group">
+							<label class="control-label col-sm-2" for="hostel">Hostel:</label>
+							<div class="col-sm-10">
+								<p class="form-control-static" id="hostel">Xyz</p>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-2" for="Complaint Type">Complaint Type:</label>
+							<div class="col-sm-10">
+								<p class="form-control-static" id="complaintType">  </p>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="complaint">Complaint:</label>
+							<textarea class="form-control" rows="5" id="comment"></textarea>      
+						</div>
+					</div>
+					<div class="modal-footer">
+						
+						<button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Submit</button>
+					</div>
+				</div>
+      
+			</div>
+		</div>
+
+{% endblock %}
+		
