@@ -29,15 +29,10 @@ def complaint(request):
 
 def signup(request):
     if request.method == 'POST':
-        SignUpForm = SignUp(request.POST)
-        if SignUpForm.is_valid():
-            redirect(home)
+        signupform = SignUp(request.POST)
+        if signupform.is_valid():
+            return redirect(home)
     else:
-        SignUpForm = SignUp()
-    context = {'hostel_list': hostel_list , 'SignUpForm' : SignUpForm}
+        signupform = SignUp()
+    context = {'hostel_list': hostel_list , 'SignUpForm' : signupform}
     return render(request ,'home/signup.html',context)
-
-
-def signedup(request):
-    context = {'hostel_list': hostel_list}
-    return redirect(home)

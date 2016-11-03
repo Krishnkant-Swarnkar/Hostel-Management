@@ -1,6 +1,13 @@
 from django.db import models
+from django.core.validators import MinValueValidator,MaxValueValidator,RegexValidator
 # Create your models here.
-
+mobile_regex = RegexValidator(regex=r'^[6789]\d{9}$', message="Enter a valid 10 digit mobile number(No 0 or country code needed.)")
+roll_regex = RegexValidator(regex=r'^[1-9]\d{7}$', message="Enter a valid roll number.")
+pin_regex = RegexValidator(regex=r'^[1-9]\d{5}$', message="Enter a valid Pincode.")
+ac_regex = RegexValidator(regex=r'^\d{9,18}$', message="Enter a valid Account number.")
+ifsc_regex = RegexValidator(regex=r'^[A-Za-z]{4}\d{7}$', message="Enter a valid IFSC code.")
+du_regex = RegexValidator(regex=r'^DU\d{8}$', message="Enter a valid DU reference number.")
+room_regex = RegexValidator(regex=r'^[a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9]$', message="Enter a valid room number.")
 SEMESTER = (
     (1,'I'),(2,'II'),(3,'III'),(4,'IV'),(5,'V'),(6,'VI'),(7,'VII'),(8,'VIII'),(9,'IX'),(10,'X'),
 )
@@ -26,36 +33,35 @@ class Hostel(models.Model):
 
 
 class Student(models.Model):
-    roll = models.BigIntegerField(primary_key=True,default=None)
+    roll = models.CharField(primary_key=True,default=None,validators=[roll_regex],max_length=8)
     name = models.CharField(max_length=100,default='')
     dob = models.DateField(default='1/1/1996')
     email = models.EmailField(default='')
-    mobile = models.BigIntegerField(default=None)
+    mobile = models.CharField(default=None,validators=[mobile_regex],max_length=10)
     program = models.CharField(max_length=10,choices=PROGRAM,default='')
     department = models.CharField(max_length=10,choices=DEPARTMENT,default='')
     semester = models.IntegerField(choices=SEMESTER,default=None)
     father_name = models.CharField(max_length=100,default='')
-    mother_name = models.CharField(max_length=100,default='')
-    father_occ = models.CharField(max_length=100,default='')
-    mother_occ = models.CharField(max_length=100,default='')
-    parent_contact = models.BigIntegerField(default=None)
+    mother_name = models.CharField(max_length=100,default='',null=True, blank=True)
+    father_occ = models.CharField(max_length=30,default='')
+    mother_occ = models.CharField(max_length=30,default='',null=True, blank=True)
+    parent_contact = models.CharField(default=None,validators=[mobile_regex],max_length=10)
     hostel = models.ForeignKey(Hostel, on_delete=models.PROTECT,default='')
-    room = models.CharField(max_length=10,default='')
-    du = models.CharField(max_length=100,default='')
-    mess_du = models.CharField(max_length=100,default='')
-    guardian_name = models.CharField(max_length=100,null=True, blank=True)
+    room = models.CharField(max_length=5,default='',validators=[room_regex])
+    du = models.CharField(max_length=10,validators=[du_regex],default='')
+    mess_du = models.CharField(max_length=10,validators=[du_regex],default='')
     local_address = models.CharField(max_length=500,null=True, blank=True)
-    relation = models.CharField(max_length=100,null=True, blank=True)
-    guardian_contact = models.BigIntegerField(null=True, blank=True)
+    local_contact = models.CharField(null=True, blank=True,validators=[mobile_regex],max_length=10)
     permanent_address = models.CharField(max_length=500,default='')
-    town = models.CharField(max_length=100,default='')
-    state = models.CharField(max_length=100,default='')
-    pincode = models.IntegerField(default=None)
-    account = models.BigIntegerField(default=None)
-    bank_name = models.CharField(max_length=100,default='')
-    branch_name = models.CharField(max_length=100,default='')
-    ifsc = models.CharField(max_length=100,default='')
-    password = models.CharField(max_length=100,default='')
+    town = models.CharField(max_length=50,default='')
+    state = models.CharField(max_length=50,default='')
+    pincode = models.CharField(default=None,validators=[pin_regex],max_length=6)
+    account = models.CharField(default=None,validators=[ac_regex],max_length=15)
+    holder =  models.CharField(max_length=100,default='')
+    bank = models.CharField(max_length=100,default='')
+    branch = models.CharField(max_length=100,default='')
+    ifsc = models.CharField(max_length=11,validators=[ifsc_regex],default='')
+    password = models.CharField(max_length=20,default='')
 
 
 class Complaint(models.Model):
