@@ -6,55 +6,233 @@
 {% endblock %}
 {% block body %}
 		<div class="container">
-            <h2>Sign Up form</h2>
-			<br>
-            <form class="form-horizontal" action="{% url 'signedup' %}" method="POST" name="signup_form">
+            <h2 align="center" style="color:red"><b>Sign Up Form</b></h2>
+            <h6><i>Necessary fields are marked <sup>*</sup></i></h6></br>
+            <form class="form-horizontal" action="{% url 'signup' %}" method="POST" name="signup_form">
                 {% csrf_token %}
-
                 <div class="form-group">
                     {{ SignUpForm.roll.errors }}
-                    <label class="control-label col-sm-2" for="{{ SignUpForm.roll.id_for_label }}">ROLL NUMBER</label>
+                    <label class="control-label col-sm-2" for="{{ SignUpForm.roll.id_for_label }}">ROLL NUMBER<sup>*</sup></label>
                     <div class="col-sm-2">
                         {{ SignUpForm.roll }}
                     </div>
                 </div>
                 <div class="form-group">
                     {{ SignUpForm.name.errors }}
-                    <label class="control-label col-sm-2" for="{{ SignUpForm.name.id_for_label }}">NAME</label>
+                    <label class="control-label col-sm-2" for="{{ SignUpForm.name.id_for_label }}">NAME<sup>*</sup></label>
                     <div class="col-sm-5">
                         {{ SignUpForm.name }}
                     </div>
                 </div>
                 <div class="form-group">
                     {{ SignUpForm.dob.errors }}
-                    <label class="control-label col-sm-2" for="{{ SignUpForm.dob.id_for_label }}"><span class="pull-right">Date of Birth</span></label>
+                    <label class="control-label col-sm-2" for="{{ SignUpForm.dob.id_for_label }}"><span class="pull-right">Date of Birth<sup>*</sup></span></label>
                     <div class="form-inline col-sm-5">
                         {{ SignUpForm.dob }}
                     </div>
                 </div>
                 <div class="form-group">
                     {{ SignUpForm.department.errors }}
-                    <label class="control-label col-sm-2" for="{{ SignUpForm.department.id_for_label }}">Department</label>
+                    <label class="control-label col-sm-2" for="{{ SignUpForm.department.id_for_label }}">Department<sup>*</sup></label>
                     <div class="col-sm-3">
                         {{ SignUpForm.department }}
                     </div>
                 </div>
                 <div class="form-group">
                     {{ SignUpForm.program.errors }}
-                    <label class="control-label col-sm-2" for="{{ SignUpForm.program.id_for_label }}">Program</label>
+                    <label class="control-label col-sm-2" for="{{ SignUpForm.program.id_for_label }}">Program<sup>*</sup></label>
                     <div class="col-sm-2">
                         {{ SignUpForm.program }}
                     </div>
                 </div>
-
-
-
-
-
-    
                 <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    {{ SignUpForm.semester.errors }}
+                    <label class="control-label col-sm-2" for="{{ SignUpForm.semester.id_for_label }}">Semester<sup>*</sup></label>
+                    <div class="col-sm-1">
+                        {{ SignUpForm.semester }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ SignUpForm.email.errors }}
+                    <label class="control-label col-sm-2" for="{{ SignUpForm.email.id_for_label }}">Email<sup>*</sup></label>
+                    <div class="col-sm-5">
+                        {{ SignUpForm.email }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ SignUpForm.mobile.errors }}
+                    <label class="control-label col-sm-2" for="{{ SignUpForm.mobile.id_for_label }}">Contact no<sup>*</sup></label>
+                    <div class="col-sm-2">
+                        {{ SignUpForm.mobile }}
+                    </div>
+                </div>
+                <h4>Present hostel </h4>
+                <div class="form-group">
+                    {{ SignUpForm.hostel.errors }}
+                    <label class="control-label col-sm-3" for="{{ SignUpForm.hostel.id_for_label }}">Hostel<sup>*</sup></label>
+                    <div class="col-sm-3">
+                        {{ SignUpForm.hostel }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ SignUpForm.room.errors }}
+                    <label class="control-label col-sm-3" for="{{ SignUpForm.room.id_for_label }}">Room no<sup>*</sup></label>
+                    <div class="col-sm-2">
+                        {{ SignUpForm.room }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ SignUpForm.du.errors }}
+                    <label class="control-label col-sm-3" for="{{ SignUpForm.du.id_for_label }}">Acadmic fee DU no<sup>*</sup></label>
+                    <div class="col-sm-3">
+                        {{ SignUpForm.du }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ SignUpForm.mess_du.errors }}
+                    <label class="control-label col-sm-3" for="{{ SignUpForm.mess_du.id_for_label }}">Mess fee DU no<sup>*</sup></label>
+                    <div class="col-sm-3">
+                        {{ SignUpForm.mess_du }}
+                    </div>
+                </div>
+                <h4>Parent's Details</h4>
+                <h6><sup>*</sup>Can also enter Guardian's Details</h6>
+                <div class="form-group">
+                    {{ SignUpForm.father_name.errors }}
+                    <label class="control-label col-sm-3" for="{{ SignUpForm.father_name.id_for_label }}">Father's Name<sup>*</sup></label>
+                    <div class="col-sm-5">
+                        {{ SignUpForm.father_name }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ SignUpForm.father_occ.errors }}
+                    <label class="control-label col-sm-3" for="{{ SignUpForm.father_occ.id_for_label }}">Father's Occupation<sup>*</sup></label>
+                    <div class="col-sm-3">
+                        {{ SignUpForm.father_occ }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ SignUpForm.mother_name.errors }}
+                    <label class="control-label col-sm-3" for="{{ SignUpForm.mother_name.id_for_label }}">Mother's Name</label>
+                    <div class="col-sm-5">
+                        {{ SignUpForm.mother_name }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ SignUpForm.mother_occ.errors }}
+                    <label class="control-label col-sm-3" for="{{ SignUpForm.mother_occ.id_for_label }}">Mother's Occupation</label>
+                    <div class="col-sm-3">
+                        {{ SignUpForm.mother_occ }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ SignUpForm.parent_contact.errors }}
+                    <label class="control-label col-sm-3" for="{{ SignUpForm.parent_contact.id_for_label }}">Contact number<sup>*</sup></label>
+                    <div class="col-sm-2">
+                        {{ SignUpForm.parent_contact }}
+                    </div>
+                </div>
+                <h4>Permanent Address </h4>
+                 <div class="form-group">
+                    {{ SignUpForm.permanent_address.errors }}
+                    <label class="control-label col-sm-3" for="{{ SignUpForm.permanent_address.id_for_label }}">Permanent Address<sup>*</sup></label>
+                    <div class="col-sm-6">
+                        {{ SignUpForm.permanent_address }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ SignUpForm.town.errors }}
+                    <label class="control-label col-sm-3" for="{{ SignUpForm.town.id_for_label }}">Town<sup>*</sup></label>
+                    <div class="col-sm-3">
+                        {{ SignUpForm.town }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ SignUpForm.state.errors }}
+                    <label class="control-label col-sm-3" for="{{ SignUpForm.state.id_for_label }}">State<sup>*</sup></label>
+                    <div class="col-sm-3">
+                        {{ SignUpForm.state }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ SignUpForm.pincode.errors }}
+                    <label class="control-label col-sm-3" for="{{ SignUpForm.pincode.id_for_label }}">Pincode<sup>*</sup></label>
+                    <div class="col-sm-2">
+                        {{ SignUpForm.pincode }}
+                    </div>
+                </div>
+                <h4>Local Address</h4>
+                <div class="form-group">
+                    {{ SignUpForm.local_address.errors }}
+                    <label class="control-label col-sm-3" for="{{ SignUpForm.local_address.id_for_label }}">Local Address</label>
+                    <div class="col-sm-6">
+                        {{ SignUpForm.local_address }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ SignUpForm.local_contact.errors }}
+                    <label class="control-label col-sm-3" for="{{ SignUpForm.local_contact.id_for_label }}">Contact number</label>
+                    <div class="col-sm-2">
+                        {{ SignUpForm.local_contact }}
+                    </div>
+                </div>
+                <h4>Bank Details</h4>
+                <div class="form-group">
+                    {{ SignUpForm.account.errors }}
+                    <label class="control-label col-sm-3" for="{{ SignUpForm.account.id_for_label }}">Account number<sup>*</sup></label>
+                    <div class="col-sm-3">
+                        {{ SignUpForm.account }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ SignUpForm.holder.errors }}
+                    <label class="control-label col-sm-3" for="{{ SignUpForm.holder.id_for_label }}">Account Holerd's Name<sup>*</sup></label>
+                    <div class="col-sm-5">
+                        {{ SignUpForm.holder }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ SignUpForm.bank.errors }}
+                    <label class="control-label col-sm-3" for="{{ SignUpForm.bank.id_for_label }}">Bank name<sup>*</sup></label>
+                    <div class="col-sm-5">
+                        {{ SignUpForm.bank }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ SignUpForm.branch.errors }}
+                    <label class="control-label col-sm-3" for="{{ SignUpForm.branch.id_for_label }}">Branch Name<sup>*</sup></label>
+                    <div class="col-sm-3">
+                        {{ SignUpForm.branch }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ SignUpForm.ifsc.errors }}
+                    <label class="control-label col-sm-3" for="{{ SignUpForm.ifsc.id_for_label }}">IFSC Code<sup>*</sup></label>
+                    <div class="col-sm-3">
+                        {{ SignUpForm.ifsc }}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    {{ SignUpForm.password.errors }}
+                    <label class="control-label col-sm-2" for="{{ SignUpForm.password.id_for_label }}">Password <sup>*</sup></label>
+                    <div class="col-sm-3">
+                        {{ SignUpForm.password }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ SignUpForm.confirm_password.errors }}
+                    <label class="control-label col-sm-2" for="{{ SignUpForm.confirm_password.id_for_label }}">Confirm Password <sup>*</sup></label>
+                    <div class="col-sm-3">
+                        {{ SignUpForm.confirm_password }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-3 col-sm-2">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                    <div class="col-sm-offset-1 col-sm-2">
+                        <button type="reset" class="btn btn-secondary">Reset</button>
                     </div>
                 </div>
             </form>
