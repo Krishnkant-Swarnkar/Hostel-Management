@@ -31,6 +31,9 @@ class Hostel(models.Model):
     name = models.CharField(max_length=100,unique=True,default='')
     fullname = models.CharField(max_length=200,null=True, blank=True)
 
+    def __unicode__(self):
+        return self.name
+
 
 class Student(models.Model):
     roll = models.CharField(primary_key=True,default=None,validators=[roll_regex],max_length=8)

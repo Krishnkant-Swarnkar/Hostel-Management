@@ -2,6 +2,7 @@ from django.shortcuts import get_object_or_404, render,redirect
 from .models import *
 from django.http import HttpResponse
 from .forms import SignUp
+from django.contrib import messages
 # Create your views here.
 hostel_list = Hostel.objects.order_by('name')
 
@@ -31,6 +32,9 @@ def signup(request):
     if request.method == 'POST':
         signupform = SignUp(request.POST)
         if signupform.is_valid():
+            signupform.save()
+            user_id = signupform.cleaned_data['roll']
+            messages.add_message(request, messages.INFO, 'Sign up Successful. \\n Your USERNAME is '+str(user_id))
             return redirect(home)
     else:
         signupform = SignUp()

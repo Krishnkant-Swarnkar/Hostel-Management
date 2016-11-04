@@ -10,7 +10,6 @@ class SignUp(ModelForm):
         model = Student
         fields = '__all__'
         error_messages = {
-
             }
         widgets = {
             'name': forms.TextInput(attrs={'placeholder': 'Enter Name' , 'class': 'form-control'}),
@@ -26,7 +25,7 @@ class SignUp(ModelForm):
             'mother_name': forms.TextInput(attrs={'placeholder': "Enter  Mother's Name", 'class': 'form-control'}),
             'mother_occ': forms.TextInput(attrs={'placeholder': "Enter Mother's Occupation", 'class': 'form-control'}),
             'parent_contact': forms.TextInput(attrs={'placeholder': "Enter contact no", 'class': 'form-control'}),
-            'hostel': forms.TextInput(attrs={ 'class': 'form-control'}),
+            'hostel': forms.Select(attrs={ 'class': 'form-control'}),
             'room': forms.TextInput(attrs={'placeholder': 'Enter Room', 'class': 'form-control'}),
             'du': forms.TextInput(attrs={'placeholder': 'Enter Academic fee DU reference no', 'class': 'form-control'}),
             'mess_du': forms.TextInput(attrs={'placeholder': 'Enter Mess fee DU reference no', 'class': 'form-control'}),
@@ -48,7 +47,6 @@ class SignUp(ModelForm):
         cleaned_data = super(SignUp, self).clean()
         password = cleaned_data.get("password")
         confirm_password = cleaned_data.get("confirm_password")
-
         if password != confirm_password:
             SignUp.add_error(self,field='confirm_password',error="Password and confirm password does not match")
 
