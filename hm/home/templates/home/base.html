@@ -63,8 +63,20 @@
 					<li ><a href="#">Discussion</a></li>
 					<li ><a href="{% url 'complaint' %}">Complaints</a></li>
 					<li ><a href="#">Mess</a></li>
+                    {% if request.user.is_authenticated %}
+                <li class="dropdown" id="user-dd">
+						<a href="./user.html" class="dropdown-toggle" id="user-toggle" ><span class="glyphicon glyphicon-user"></span> {{ request.user.first_name }}<b class="caret" id="u-c"></b></a>
+						<ul class="dropdown-menu" id="user-menu">
+							<li><a href="./user.html">Profile</a></li>
+							<li><a href="./cpwd.html">Change Password</a></li>
+							<li><a href="{% url 'Logout' %}" id="logout">Logout</a></li>
+						</ul>
+						</li>
+                {% else %}
 					<li id="login" ><a href="#myBtn" class="show" id="myBtn"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-					
+                {% endif %}
+
+
 					<li class="icon">
 						<a href="#respon" id="respon">&#9776;</a>
 					</li>
@@ -82,21 +94,28 @@
 						<button type="button" class="close" data-dismiss="modal">&times;</button>
 						<h4><span class="glyphicon glyphicon-lock"></span> Login</h4>
 					</div>
-					<div class="modal-body" style="padding:40px 50px;">
-					<form role="form" action="./userhome.html" method="post">
-						<div class="form-group">
-							<label for="usrname"><span class="glyphicon glyphicon-user"></span> Username</label>
-							<input type="text" class="form-control" id="usrname" placeholder="Enter email">
-						</div>
-						<div class="form-group">
-							<label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
-							<input type="password" class="form-control" id="password" placeholder="Enter password">
-						</div>
-						<div class="checkbox">
-							<label><input type="checkbox" value="" checked>Remember me</label>
-						</div>
-							<button type="submit" value="Send" class="btn btn-success btn-block" id="loginBtn" ><span class="glyphicon glyphicon-off" ></span> Login</button>
-					</form>
+					<div class="modal-body" id= "login_modal_body" style="padding:40px 50px;">
+<form role="form" action="{% url 'loging' %}" method="post">
+    {% csrf_token %}
+    <div class="form-group">
+        {{ LogInForm.non_fields_errors }}
+        {{ LogInForm.user_id.errors }}
+        <label for="{{ LogInForm.user_id.id_for_label }}">
+            <span class="glyphicon glyphicon-user"></span> Username</label>
+        {{ LogInForm.user_id }}
+    </div>
+    <div class="form-group">
+        {{ LogInForm.password.errors }}
+        <label for="{{ LogInForm.password.id_for_label }}"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
+        {{ LogInForm.password }}
+    </div>
+    <div class="checkbox">
+        {{ LogInForm.remember_me.errors }}
+        <label for="{{ LogInForm.remember_me.id_for_label }}">{{ LogInForm.remember_me }}  Remember me</label>
+    </div>
+    <button type="submit" value="Send" class="btn btn-success btn-block" id="loginBtn" >
+        <span class="glyphicon glyphicon-off" ></span> Login</button>
+</form>
 					</div>
 					<div class="modal-footer">
 						
@@ -108,7 +127,7 @@
       
 			</div>
 		</div>
-	
+
 		{% block body %}
         {% endblock %}
 	
@@ -122,8 +141,13 @@
 				</ul>
 			
 		</footer>
-	
-	
-		
 	</body>
 </html>
+
+<script>
+    $("#myBtn").click(function () {
+        $("#id_user_id").val("");
+        $("#id_password").val("");
+        $("#myModal").modal();
+    });
+</script>
