@@ -1,30 +1,35 @@
+import json
 from django.shortcuts import get_object_or_404, render,redirect
 from .models import *
-from django.http import HttpResponse
-from .forms import SignUp
+from django.http import HttpResponseForbidden
+from .forms import *
 from django.contrib import messages
 # Create your views here.
 hostel_list = Hostel.objects.order_by('name')
 
 
 def home(request):
-    context = {'hostel_list': hostel_list}
+    loginform = LogIn()
+    context = {'hostel_list': hostel_list, 'LogInForm': loginform}
     return render(request ,'home/index.html',context)
 
 
 def hostel(request):
-    context = {'hostel_list': hostel_list}
+    loginform = LogIn()
+    context = {'hostel_list': hostel_list, 'LogInForm': loginform}
     return render(request ,'home/hostel.html',context)
 
 
 def allhostel(request,hostel_id):
     cur_hostel = get_object_or_404(Hostel, pk=hostel_id)
-    context = {'hostel_list': hostel_list , 'cur_hostel': cur_hostel}
+    loginform = LogIn()
+    context = {'hostel_list': hostel_list , 'cur_hostel': cur_hostel, 'LogInForm': loginform}
     return render(request ,'home/allhostel.html',context)
 
 
 def complaint(request):
-    context = {'hostel_list': hostel_list}
+    loginform = LogIn()
+    context = {'hostel_list': hostel_list, 'LogInForm': loginform}
     return render(request ,'home/complaint.html',context)
 
 
@@ -38,5 +43,20 @@ def signup(request):
             return redirect(home)
     else:
         signupform = SignUp()
-    context = {'hostel_list': hostel_list , 'SignUpForm' : signupform}
-    return render(request ,'home/signup.html',context)
+    loginform = LogIn()
+    context = {'hostel_list': hostel_list , 'SignUpForm': signupform, 'LogInForm': loginform}
+    return render(request,'home/signup.html',context)
+
+
+def login(request):
+    if request.method == 'POST':
+        loginform = LogIn(request.POST)
+        if loginform.is_valid():
+            user_id = loginform.cleaned_data['user_id']
+            messages.add_message(request, messages.INFO, 'Logged in ')
+            return redirect(home)
+    else:
+        loginform = LogIn()
+    context = {'hostel_list': hostel_list, 'LogInForm': loginform }
+    return render(request ,'home/login.html',context)
+
