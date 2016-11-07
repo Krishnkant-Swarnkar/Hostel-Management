@@ -8,5 +8,7 @@ urlpatterns = [
     url(r'^hostel/(?P<hostel_id>[-\w]+)/$', views.allhostel, name='allhostel'),
     url(r'^complaint/$', views.complaint, name='complaint'),
     url(r'^signup/$', views.signup, name='signup'),
-    url(r'^login/$', views.login, name='login'),
+    url(r'^login/$', views.loging, name='loging'),
+    url(r'^Logout/', views.Logout, name='Logout'),
+
 ]

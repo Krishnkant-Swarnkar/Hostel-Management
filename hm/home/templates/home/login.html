@@ -14,7 +14,7 @@
         <h4><span class="glyphicon glyphicon-lock"></span> Login</h4>
     </div>
     <div class="modal-body" id= "login_modal_body" style="padding:40px 50px;">
-<form role="form" action="{% url 'login' %}" method="post">
+<form role="form" action="{% url 'loging' %}" method="post">
     {% csrf_token %}
     <div class="form-group">
         {{ LogInForm.non_fields_errors }}
