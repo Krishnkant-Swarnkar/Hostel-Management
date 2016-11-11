@@ -6,6 +6,7 @@ from .forms import *
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login ,logout
+from django.core.mail import send_mail,mail_admins
 # Create your views here.
 hostel_list = Hostel.objects.order_by('name')
 
@@ -91,6 +92,15 @@ def submit_complaint(request):
         if complaintform.is_valid():
             f=complaintform.save()
             ID = f.id
+            TYPE = f.type
+            COMPLAINT = f.complaint
+            HOSTEL = f.hostel
+            STUDENT = f.student
+            TIME = f.time
+            sub="Complaint"
+            body='\nComplaint ID: '+str(ID)+'\nStudent Roll: '+str(STUDENT)+'\nType: '+str(TYPE)+'\nHostel: '+str(HOSTEL)+'\nComplaint : '+str(COMPLAINT)+'\nTime & Date: '+str(TIME)
+            mail_admins(subject=sub, message=body, fail_silently=False)
+            send_mail(subject=sub, message=body, fail_silently=False, from_email='itw2practice@gmail.com', recipient_list=['mkr8686@gmail.com'])
             messages.add_message(request, messages.INFO, 'Complaint submitted. \\n Complaint ID is '+str(ID))
             context = {'hostel_list': hostel_list, 'LogInForm': loginform, 'ComplaintForm':complaintform}
             return render(request, 'home/index.html', context)
