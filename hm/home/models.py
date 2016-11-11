@@ -25,6 +25,22 @@ PROGRAM =(
     ('MTECH','M.Tech'),
     ('PHD','Phd'),
 )
+COMPLAINT_TYPE=(
+    ('Water Supply','Water Supply'),
+    ('Electricity','Electricity'),
+    ('Lan Port','Lan Port'),
+    ('Furniture','Furniture'),
+    ('Canteen','Canteen'),
+    ('Registration','Registration'),
+    ('Security','Security'),
+    ('Parking','Parking'),
+    ('Mess','Mess'),
+    ('Disturbance','Disturbance'),
+    ('Other Infra-related','Other Infra-related'),
+    ('Cleanliness','Cleanliness'),
+    ('Suggestion','Suggestion'),
+    ('Others','Others')
+)
 
 
 class Hostel(models.Model):
@@ -66,14 +82,19 @@ class Student(models.Model):
     ifsc = models.CharField(max_length=11,validators=[ifsc_regex],default='')
     password = models.CharField(max_length=20,default='')
 
+    def __unicode__(self):
+        return self.roll
+
 
 class Complaint(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE, default='')
-    id = models.IntegerField(primary_key=True, default=None)
-    type = models.CharField(max_length=100,default='')
+    type = models.CharField(max_length=25,default='',choices=COMPLAINT_TYPE)
     hostel = models.ForeignKey(Hostel, on_delete=models.CASCADE,default='')
-    complaint = models.CharField(max_length=100,default='')
-    time = models.DateTimeField(default=None)
+    complaint = models.CharField(max_length=500,default='')
+    time = models.DateTimeField(auto_now=True)
+
+    def __unicode__(self):
+        return self.id
 
 
 class Staff(models.Model):

@@ -68,7 +68,7 @@
 						<a href="./user.html" class="dropdown-toggle" id="user-toggle" ><span class="glyphicon glyphicon-user"></span> {{ request.user.first_name }}<b class="caret" id="u-c"></b></a>
 						<ul class="dropdown-menu" id="user-menu">
 							<li><a href="./user.html">Profile</a></li>
-							<li><a href="./cpwd.html">Change Password</a></li>
+							<li><a href="{% url 'change_password' %}">Change Password</a></li>
 							<li><a href="{% url 'Logout' %}" id="logout">Logout</a></li>
 						</ul>
 						</li>
@@ -127,6 +127,14 @@
       
 			</div>
 		</div>
+
+        <script>
+    {% if messages %}
+        {% for message in messages %}
+    alert('{{ message }}');
+         {% endfor %}
+    {% endif %}
+    </script>
 
 		{% block body %}
         {% endblock %}

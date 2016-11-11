@@ -1,0 +1,54 @@
+{% extends 'home/base.html' %}
+{%  load staticfiles %}
+{% block head %}
+    <title> Change Password | Hostels </title>
+{% endblock %}
+{% block body %}
+	
+		<section style="min-height:600px;" class="container-fluid">
+				<div class="row">
+				<div class="col-sm-2">
+				</div>
+				<div class="col-sm-8">
+				<h2> Change Password </h2>
+				<br><br>
+				<form class="form-horizontal" action="{% url 'change_password' %}" method="post">
+                    {% csrf_token %}
+					<div class="form-group" >
+                        {{ ChangePasswordForm.user_id.errors }}
+						<label for="{{ ChangePasswordForm.user_id.id_for_label }}" class="control-label col-sm-3" >Roll</label>
+						<div class="control-label col-sm-5" >
+							<input type="text" class="form-control" id="{{  ChangePasswordForm.user_id.id_for_label }}"
+                                       name="{{ ChangePasswordForm.user_id.html_name }}" readonly value="{{ request.user.username }}">
+						</div>
+					</div>
+					<div class="form-group">
+                        {{ ChangePasswordForm.password.errors }}
+						<label for="{{ ChangePasswordForm.password.id_for_label }}" class="control-label col-sm-3"><span class="glyphicon glyphicon-eye-open"></span> Old Password</label>
+						<div class="control-label col-sm-5">
+						{{ ChangePasswordForm.password }}
+						</div>
+					</div>
+					<div class="form-group">
+						{{ ChangePasswordForm.new_password.errors }}
+						<label for="{{ ChangePasswordForm.new_password.id_for_label }}" class="control-label col-sm-3"><span class="glyphicon glyphicon-eye-open"></span> New Password</label>
+						<div class="control-label col-sm-5">
+						{{ ChangePasswordForm.new_password }}
+						</div>
+					</div>
+					<div class="form-group">
+						{{ ChangePasswordForm.confirm_password.errors }}
+						<label for="{{ ChangePasswordForm.confirm_password.id_for_label }}" class="control-label col-sm-3"><span class="glyphicon glyphicon-eye-open"></span> Confirm New Password</label>
+						<div class="control-label col-sm-5">
+						{{ ChangePasswordForm.confirm_password }}
+						</div>
+					</div>	
+					 <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+						</form>
+                    </div>
+		</section>
+	{% endblock %}

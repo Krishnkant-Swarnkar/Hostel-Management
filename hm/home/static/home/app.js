@@ -58,11 +58,7 @@ main = function () {
         $(this).parent().addClass('active');
     });
 
-    $(".compBtn").click(function () {
-        var a = $(this).attr("id");
-        $("#complaintType").text(a);
-        $("#complModal").modal();
-    });
+
 
 
 

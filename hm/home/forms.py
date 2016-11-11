@@ -59,8 +59,10 @@ class SignUp(ModelForm):
 
 
 class LogIn(forms.Form):
-    user_id = forms.CharField(max_length=8,widget=forms.TextInput(attrs={'placeholder': 'Enter Username', 'class': 'form-control'}))
-    password = forms.CharField(max_length=20,widget=forms.PasswordInput(attrs={'placeholder': 'Enter password', 'class': 'form-control'}),)
+    user_id = forms.CharField(max_length=8,widget=forms.TextInput(
+        attrs={'placeholder': 'Enter Username', 'class': 'form-control'}))
+    password = forms.CharField(max_length=20,widget=forms.PasswordInput(
+        attrs={'placeholder': 'Enter password', 'class': 'form-control'}),)
     remember_me = forms.BooleanField(required=False)
 
     def clean(self):
@@ -74,3 +76,43 @@ class LogIn(forms.Form):
         else:
             LogIn.add_error(self, field='user_id', error="Invalid Username")
 
+
+class ComplaintForm(ModelForm):
+    class Meta:
+        model = Complaint
+        fields = '__all__'
+        error_messages = {
+            'complaint' : { 'min_length' : "Min length must be 50 characters" }
+        }
+        widgets = {
+            'student': forms.TextInput(attrs={ 'class': 'form-control-static', 'readonly':True, }),
+            'type': forms.Select(attrs={'class': 'form-control-static', 'readonly':True}),
+            'hostel': forms.Select(attrs={'class': 'form-control'}),
+            'complaint': forms.Textarea(attrs={
+                'min_length':50, 'placeholder': "Enter Complaint here.....", 'class': 'form-control', 'rows':6}),
+            'time' : forms.HiddenInput()
+        }
+
+
+class ChangePassword(forms.Form):
+    user_id = forms.CharField(max_length=20, widget=forms.TextInput(attrs={'class': 'form-control-static', 'readonly': True, }),)
+    password = forms.CharField(max_length=20, widget=forms.PasswordInput(
+        attrs={'placeholder': 'Enter old password', 'class': 'form-control'}), )
+    new_password = forms.CharField(max_length=20, widget=forms.PasswordInput(
+        attrs={'placeholder': 'Enter New password', 'class': 'form-control'}), )
+    confirm_password = forms.CharField(widget=forms.PasswordInput(
+        attrs={'placeholder': 'Enter password again', 'class': 'form-control'}))
+
+    def clean(self):
+        cleaned_data = super(ChangePassword, self).clean()
+        user_id = cleaned_data.get("user_id")
+        password = cleaned_data.get("password")
+        new_password = cleaned_data.get("new_password")
+        confirm_password = cleaned_data.get("confirm_password")
+        if Student.objects.filter(roll=str(user_id)).exists():
+            student = Student.objects.get(roll=str(user_id))
+            if password != student.password:
+                ChangePassword.add_error(self, field='password', error="Wrong Password")
+            elif new_password != confirm_password:
+                ChangePassword.add_error(
+                    self,field='confirm_password',error="Password and confirm password does not match")

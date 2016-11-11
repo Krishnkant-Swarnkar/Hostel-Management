@@ -31,7 +31,11 @@ def allhostel(request,hostel_id):
 
 def complaint(request):
     loginform = LogIn()
-    context = {'hostel_list': hostel_list, 'LogInForm': loginform}
+    complaintform = ComplaintForm()
+    context = {'hostel_list': hostel_list, 'LogInForm': loginform, 'ComplaintForm':complaintform}
+    if not request.user.is_authenticated:
+        messages.add_message(request, messages.INFO, 'Must be Logged in to access this page content. \\n Login First.')
+        return render(request, 'home/login.html', context)
     return render(request ,'home/complaint.html',context)
 
 
@@ -78,3 +82,44 @@ def Logout(request):
     logout(request)
     messages.add_message(request, messages.INFO, ' Logged Out ')
     return redirect(home)
+
+
+def submit_complaint(request):
+    loginform = LogIn()
+    if request.method == 'POST':
+        complaintform = ComplaintForm(request.POST)
+        if complaintform.is_valid():
+            f=complaintform.save()
+            ID = f.id
+            messages.add_message(request, messages.INFO, 'Complaint submitted. \\n Complaint ID is '+str(ID))
+            context = {'hostel_list': hostel_list, 'LogInForm': loginform, 'ComplaintForm':complaintform}
+            return render(request, 'home/index.html', context)
+    else:
+        complaintform = ComplaintForm()
+    context = {'hostel_list': hostel_list, 'LogInForm': loginform, 'ComplaintForm':complaintform }
+    return render(request ,'home/complaint.html',context)
+
+
+def change_password(request):
+    loginform = LogIn()
+    if request.method == 'POST':
+        changepassword = ChangePassword(request.POST)
+        if changepassword.is_valid():
+            user_id = changepassword.cleaned_data['user_id']
+            password = changepassword.cleaned_data['password']
+            new_password = changepassword.cleaned_data["new_password"]
+            confirm_password = changepassword.cleaned_data["confirm_password"]
+            user = authenticate(username=user_id, password=password)
+            if user is not None:
+                user.set_password(new_password)
+                user.save()
+                student = Student.objects.get(roll__exact=user_id, password=password)
+                student.password=new_password
+                student.save()
+                messages.add_message(request, messages.INFO, 'Password Changed')
+                context = {'hostel_list': hostel_list, 'LogInForm': loginform, 'ChangePasswordForm': changepassword}
+                return render(request, 'home/index.html', context)
+    else:
+        changepassword = ChangePassword()
+    context = {'hostel_list': hostel_list, 'LogInForm': loginform, 'ChangePasswordForm': changepassword}
+    return render(request, 'home/cpwd.html', context)
